@@ -150,7 +150,7 @@
             top: section.offsetTop - parseInt(scrollMarginTop),
             behavior: 'smooth'
           });
-        }, 100); 
+        }, 100);
       }
     }
   });
@@ -187,6 +187,53 @@ function copyToClipboard(text) {
     console.error('Erro ao copiar o texto: ', err);
   });
 }
+// Random Image for About Section
+function randomizeAboutImage() {
+  const images = [
+    'assets/img/hero-carousel/mari-dente.webp',
+    'assets/img/doctors/312.webp',
+    'assets/img/doctors/320.webp',
+    'assets/img/hero-carousel/329.webp'
+  ];
+
+  const randomImg = images[Math.floor(Math.random() * images.length)];
+  const imgElement = document.querySelector('.about-random');
+
+  if (imgElement) {
+    imgElement.src = randomImg;
+  }
+}
+
+// Random Image for Carousel
+function randomizeCarouselImages() {
+  const carouselImages = [
+    'assets/img/hero-carousel/314-1up.webp',
+    'assets/img/hero-carousel/329up.webp',
+    'assets/img/hero-carousel/326.jpg'
+  ];
+
+  const slots = Array.from(document.querySelectorAll('.carousel-random'));
+  if (!slots.length) return;
+
+  // Shuffle a copy of the images array (Fisher-Yates)
+  const pool = carouselImages.slice();
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  // If we have fewer images than slots, cycle through shuffled pool (min repeats)
+  const chosen = [];
+  for (let i = 0; i < slots.length; i++) {
+    chosen.push(pool[i % pool.length]);
+  }
+
+  // Assign chosen images to each slot
+  slots.forEach((imgElement, idx) => {
+    if (chosen[idx]) imgElement.src = chosen[idx];
+  });
+}
+
 // Loader
 var i = setInterval(function () {
   clearInterval(i);
@@ -194,5 +241,9 @@ var i = setInterval(function () {
   // The desired code is only this:
   document.getElementById("loading").style.display = "none";
   document.getElementById("content").style.display = "block";
+
+  // Initialize random images after content is displayed
+  randomizeAboutImage();
+    randomizeCarouselImages();
 
 }, 2500);

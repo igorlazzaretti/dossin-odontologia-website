@@ -1991,21 +1991,15 @@ section,
 
 @keyframes zoomOutEffect {
   0% {
-    transform: scale(1.1);
-    /* Tamanho normal */
-    filter: blur(1px);
+    transform: scale(1.02);
   }
 
   50% {
     transform: scale(1);
-    /* Volta ao tamanho normal */
-    filter: blur(0px);
   }
 
   100% {
-    transform: scale(1.1);
-    /* Volta ao tamanho normal */
-    filter: blur(1px);
+    transform: scale(1.02); /* Volta ao tamanho normal */
   }
 }
 
@@ -2050,6 +2044,8 @@ section,
 
 .fotos-estetica {
   width: 16rem;
+  height: 19rem;
+  object-fit: cover;
   border-radius: 3%;
 }
 

@@ -150,7 +150,7 @@
             top: section.offsetTop - parseInt(scrollMarginTop),
             behavior: 'smooth'
           });
-        }, 100); 
+        }, 100);
       }
     }
   });
@@ -187,6 +187,40 @@ function copyToClipboard(text) {
     console.error('Erro ao copiar o texto: ', err);
   });
 }
+// Random Image for About Section
+function randomizeAboutImage() {
+  const images = [
+    'assets/img/hero-carousel/mari-dente.webp',
+    'assets/img/doctors/312.webp',
+    'assets/img/doctors/320.webp',
+    'assets/img/hero-carousel/329.webp'
+  ];
+
+  const randomImg = images[Math.floor(Math.random() * images.length)];
+  const imgElement = document.querySelector('.about-random');
+
+  if (imgElement) {
+    imgElement.src = randomImg;
+  }
+}
+
+// Random Image for Carousel
+function randomizeCarouselImages() {
+  const carouselImages = [
+    'assets/img/hero-carousel/329.webp',
+    'assets/img/hero-carousel/314-1.webp',
+    'assets/img/hero-carousel/326.jpg',
+    'assets/img/hero-carousel/mari-dente.webp',
+    'assets/img/doctors/312.webp',
+    'assets/img/doctors/320.webp'
+  ];
+
+  document.querySelectorAll('.carousel-random').forEach(imgElement => {
+    const randomImg = carouselImages[Math.floor(Math.random() * carouselImages.length)];
+    imgElement.src = randomImg;
+  });
+}
+
 // Loader
 var i = setInterval(function () {
   clearInterval(i);
@@ -194,5 +228,9 @@ var i = setInterval(function () {
   // The desired code is only this:
   document.getElementById("loading").style.display = "none";
   document.getElementById("content").style.display = "block";
+
+  // Initialize random images after content is displayed
+  randomizeAboutImage();
+    randomizeCarouselImages();
 
 }, 2500);

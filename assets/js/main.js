@@ -207,17 +207,30 @@ function randomizeAboutImage() {
 // Random Image for Carousel
 function randomizeCarouselImages() {
   const carouselImages = [
-    'assets/img/hero-carousel/329.webp',
-    'assets/img/hero-carousel/314-1.webp',
-    'assets/img/hero-carousel/326.jpg',
-    'assets/img/hero-carousel/mari-dente.webp',
-    'assets/img/doctors/312.webp',
-    'assets/img/doctors/320.webp'
+    'assets/img/hero-carousel/314-1up.webp',
+    'assets/img/hero-carousel/329up.webp',
+    'assets/img/hero-carousel/326.jpg'
   ];
 
-  document.querySelectorAll('.carousel-random').forEach(imgElement => {
-    const randomImg = carouselImages[Math.floor(Math.random() * carouselImages.length)];
-    imgElement.src = randomImg;
+  const slots = Array.from(document.querySelectorAll('.carousel-random'));
+  if (!slots.length) return;
+
+  // Shuffle a copy of the images array (Fisher-Yates)
+  const pool = carouselImages.slice();
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  // If we have fewer images than slots, cycle through shuffled pool (min repeats)
+  const chosen = [];
+  for (let i = 0; i < slots.length; i++) {
+    chosen.push(pool[i % pool.length]);
+  }
+
+  // Assign chosen images to each slot
+  slots.forEach((imgElement, idx) => {
+    if (chosen[idx]) imgElement.src = chosen[idx];
   });
 }
 

@@ -2181,7 +2181,8 @@ section,
   box-shadow: 2px 2px 12px rgba(22, 124, 60, .2);
   transition: .4s;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  z-index: 999;
 }
 
 #robbu-whatsapp-button>.rwb-tooltip {

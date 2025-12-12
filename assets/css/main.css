@@ -1951,6 +1951,25 @@ section,
 /*--------------------------------------------------------------
 # Last Personalized Code
 --------------------------------------------------------------*/
+
+/* Reading Bar */
+#readingBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--main-gold-color);
+    z-index: 1030;
+    transition: width 260ms ease-out;
+}
+
+.reading-bar-placeholder {
+    /* keep page flow if needed for non-fixed fallback */
+    height: 4px;
+}
+/* End - Reading Bar */
+
 .div-button-whatsapp {
   margin-top: 40px;
 }
